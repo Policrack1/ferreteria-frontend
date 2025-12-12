@@ -1,0 +1,338 @@
+/* src/styles.css */
+
+/* ---------- ESTILO GENERAL ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #1e293b, #020617);
+  color: #e5e7eb;
+}
+
+/* Para que el contenido no quede pegado al borde */
+.main-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Títulos */
+.page-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  padding: 0.7rem 1.5rem;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  color: #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.navbar-link {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.navbar-link:hover {
+  color: #38bdf8;
+}
+
+/* ---------- NAVBAR RESPONSIVE ---------- */
+
+/* Contenedor de links de la izquierda en desktop */
+.navbar-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Usuario + botones en desktop */
+.navbar-user-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Botón hamburguesa (oculto en desktop) */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  margin-left: 0.75rem;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  display: block;
+  height: 2px;
+  width: 16px;
+  margin: 0 auto;
+  background: #e5e7eb;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Animación cuando está abierto */
+.navbar-toggle.open span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.navbar-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.open span:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* Menú mobile (oculto en desktop) */
+.navbar-menu-mobile {
+  display: none;
+}
+
+/* ---------- BREAKPOINT MÓVIL ---------- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-left {
+    flex: 1;
+  }
+
+  /* Ocultar links de desktop en móvil */
+  .navbar-links-desktop {
+    display: none;
+  }
+
+  /* Ocultar usuario desktop en móvil (se muestra en menú) */
+  .navbar-user-desktop {
+    display: none;
+  }
+
+  /* Mostrar hamburguesa en móvil */
+  .navbar-toggle {
+    display: flex;
+  }
+
+  /* Menú mobile */
+  .navbar-menu-mobile {
+    display: none;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.98);
+    border-top: 1px solid #1f2937;
+    padding: 0.75rem 1.5rem 1rem;
+  }
+
+  .navbar-menu-mobile.show {
+    display: block;
+  }
+
+  .navbar-menu-mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .navbar-menu-mobile .navbar-link {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ---------- BOTONES ---------- */
+.btn {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+}
+
+.btn-primary {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.btn-primary:hover {
+  background: #0ea5e9;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #0f172a;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+}
+
+.btn-secondary:hover {
+  background: #1e293b;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+/* ---------- FORMULARIOS ---------- */
+.form-card {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid #1f2937;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.7);
+}
+
+.form-group {
+  margin-bottom: 0.85rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: #94a3b8;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+/* Mensajes */
+.text-error {
+  color: #f97373;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.text-success {
+  color: #4ade80;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+/* ---------- TARJETAS Y GRID DE PRODUCTOS ---------- */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #1f2937;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card h4 {
+  margin-bottom: 0.3rem;
+}
+
+.product-card p {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.product-card-price {
+  margin-top: 0.4rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+/* ---------- TABLAS (admin, carrito) ---------- */
+.table-wrapper {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #1f2937;
+}
+
+.table th {
+  background: #020617;
+  text-align: left;
+  color: #9ca3af;
+}
+
+.table tr:hover td {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* ---------- LINKS SIMPLES ---------- */
+.link-muted {
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.link-muted:hover {
+  text-decoration: underline;
+}
