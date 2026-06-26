@@ -1,0 +1,32 @@
+name: Integracion Continua - Sistema Ferreteria
+
+# El proceso se activa al subir cambios a la rama principal (main o develop)
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Ejecuta el proceso en un servidor virtual limpio
+
+    steps:
+    # 1. Descarga el código de la ferretería en el servidor de GitHub
+    - name: Copiar codigo del repositorio
+      uses: actions/checkout@v4
+
+    # 2. Configura Java JDK 17 (necesario para sistemas de escritorio o web en Java)
+    - name: Configurar Java JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    # 3. Compila el proyecto (Valida que no existan errores al registrar productos o ventas)
+    - name: Compilar sistema de ferreteria con Maven
+      run: mvn clean compile
+
+    # 4. Ejecuta las pruebas automáticas (Verifica que los cálculos de stock e IGV sean correctos)
+    - name: Ejecutar pruebas de inventario y ventas
+      run: mvn test
