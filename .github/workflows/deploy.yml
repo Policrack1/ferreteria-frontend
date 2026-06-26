@@ -1,6 +1,5 @@
-name: Integracion Continua - Sistema Ferreteria
+name: Integracion Continua - Ferreteria Frontend
 
-# El proceso se activa al subir cambios a la rama principal (main o develop)
 on:
   push:
     branches: [ main, develop ]
@@ -9,24 +8,24 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest # Ejecuta el proceso en un servidor virtual limpio
+    runs-on: ubuntu-latest
 
     steps:
-    # 1. Descarga el código de la ferretería en el servidor de GitHub
+    # 1. Copiar el código del repositorio
     - name: Copiar codigo del repositorio
       uses: actions/checkout@v4
 
-    # 2. Configura Java JDK 17 (necesario para sistemas de escritorio o web en Java)
-    - name: Configurar Java JDK 17
-      uses: actions/setup-java@v3
+    # 2. Configurar Node.js (necesario para React / Vite / Vue)
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
       with:
-        java-version: '17'
-        distribution: 'temurin'
+        node-version: 20
+        cache: 'npm'
 
-    # 3. Compila el proyecto (Valida que no existan errores al registrar productos o ventas)
-    - name: Compilar sistema de ferreteria con Maven
-      run: mvn clean compile
+    # 3. Instalar las dependencias de tu ferretería (como React o Vite)
+    - name: Instalar dependencias
+      run: npm install
 
-    # 4. Ejecuta las pruebas automáticas (Verifica que los cálculos de stock e IGV sean correctos)
-    - name: Ejecutar pruebas de inventario y ventas
-      run: mvn test
+    # 4. Compilar el proyecto de la ferretería para producción
+    - name: Compilar Frontend (Build)
+      run: npm run build
